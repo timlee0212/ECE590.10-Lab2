@@ -27,6 +27,40 @@
 \item
 Assignment 1
 
+We can do this calculation layer by layer:
+
+\begin{enumerate}
+    \item C1 (Layer 1)
+        MAC = $28\times 28 \times 3 \times 5 \times 5 \times 6 = 352800$ 
+        Params = $5\times 5\times 3 \times 6 + 6  = 456$
+    \item C2 (Layer 3)
+        MAC = $10\times 10 \times 6 \times 5 \times 5 \times 16 = 240000$
+        Params = $6\times 5 \times 5 \times 16 + 16 = 2416$
+    \item FC1 (Layer 5)
+        MAC = $5\times 5\times 16 \times 120 = 48000$
+        Params = $5\times 5\times 16 \times 120 + 120 = 48120$
+        
+    \item FC2 (Layer 6)
+        MAC = $120 \times 84 = 10080$
+        Params = $120*84 + 84 = 10164$
+        
+    \item FC3 (Layer 7)
+        MAC = $84 \times 10 = 840$
+        Params = $84 * 10 + 10 = 850$
+        
+\end{enumerate}
+
+In total, we have $MAC = 651720 = 6.5M, Params= 62006$
+
+\item
+Assignment 2
+
+The code can be found on https://github.com/timlee0212/ECE590.10-Lab2
+
+Note: The version on the repo is the finetuned version but also meet the requirement of the assignment 2.
+
+\item
+Assignment 3
 
 \end{enumerate}
 
