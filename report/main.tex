@@ -2,6 +2,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{listings}
+\usepackage{graphicx}
 \usepackage{xcolor}
 
 \newcommand{\numpy}{{\tt numpy}}    % tt font for numpy
@@ -65,7 +66,38 @@ Assignment 3
 \begin{enumerate}
     \item Initial loss (the evaluation before training) is $2.3052$
     
-    When
+    When I tried to reach 65\% validation accuracy as said in assignment, I found it varies for different runs, as shown in Fig.\ref{fig:var_init}. The reason might be the initialization of the weight. Since we do not set the random seed of each run, the initial point is different, which will lead to different result of the optimization.
+    
+    From the learning curve we can also see that after around 10 epochs, the network was overfitting. Though the training loss is on decreasing and the training accuracy is on increasing, the validation loss is increasing and the validation accuracy is decreasing. The network 'learned' too much information about the training set. 
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.45\linewidth]{initial_train_var_loss.eps}
+        \includegraphics[width=0.45\linewidth]{initial_training_var_acc.eps}
+        \caption{The accuracy and loss curve of the initial training settings of 10 runs.}
+        \label{fig:var_init}
+    \end{figure}
+    
+    \item In addition to \textit{ToTensor} and \textit{Normalize}, I added random flip and random crop as the data augmentation method. The comparison of learning curve is shown as Fig.\ref{fig:data_aug}. From the curve we can see that with data augmentation enabled, the training accuracy is much lower while the training loss decreases much slower. However, the validation accuracy is higher and the validation loss continues to decrease as the training process going. No overfitting happened and the training accuracy and loss is very close to the validation ones.
+    
+    Data augmentation can been seen as enlarging the training set. Although it may seems to make the training process slower, it prevent the network from overfitting the training set and boost the generalization ability of the neural network. 
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.45\linewidth]{data_agu_loss.eps}
+        \includegraphics[width=0.45\linewidth]{data_agu_acc.eps}
+        \caption{The accuracy and loss curve of data augmentation enabled compared to initial setting.}
+        \label{fig:data_aug}
+    \end{figure}
+    
+    \item 
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.45\linewidth]{BN_LR01_Loss.eps}
+        \includegraphics[width=0.45\linewidth]{BN_LR01_Acc.eps}
+        \caption{The accuracy and loss curve of Batch Normalization inserted compared to initial setting, with learning rate set to 0.1.}
+        \label{fig:my_label}
+    \end{figure}
 \end{enumerate}
 
 \end{enumerate}
