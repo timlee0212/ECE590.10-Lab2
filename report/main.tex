@@ -89,14 +89,40 @@ Assignment 3
         \label{fig:data_aug}
     \end{figure}
     
-    \item 
+    \item As shown in Fig.\ref{fig:BNLR}, when we increase the learning rate to 0.1, the original LeNet became very hard to converge, and the accuracy reaches only around 40\%. With Batch Normalization, the learning curve is almost the same with the original learning rate. Increasing learning rate will make every step of optimization leaps farther. Also, the gradient will rapidly reaches saturation as the process going. Thus when it getting close to the minima point, the network might keep vibrating around and the gradient will be hard to update, which keeps the loss high. Adding batch normalization will avoid the saturation problem.
     
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.45\linewidth]{BN_LR01_Loss.eps}
         \includegraphics[width=0.45\linewidth]{BN_LR01_Acc.eps}
         \caption{The accuracy and loss curve of Batch Normalization inserted compared to initial setting, with learning rate set to 0.1.}
+        \label{fig:BNLR}
+    \end{figure}
+    
+\end{enumerate}
+
+\item 
+Assignment 4
+
+\begin{enumerate}
+    \item In this section, I keep the Batch Normalization part in network and try to tune learning rate and the regularizer separately.
+    
+    First, I select $0.01, 0.05, 0.1$ as the learning rate, the learning curve of different learning rate is shown in Fig.
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\linewidth}{}
+        \caption{Caption}
         \label{fig:my_label}
+    \end{figure}
+    
+    From the result above, I found with the learning rate set to 0.05, the network gave the best result. So in the experiment below, I settle the learning rate to 0.05 and tried different regularizer. The result is shown in Fig.\ref{fig:var_reg}. We can see that the smaller the regularizer is, the smoother the learning curve is.  It seems that $5e-5$ is a relatively proper value.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.45\linewidth]{REG_BN_var_loss.eps}
+        \includegraphics[width=0.45\linewidth]{REG_BN_var.eps}
+        \caption{The accuracy and loss curve of different settings of regularizer.}
+        \label{fig:var_reg}
     \end{figure}
 \end{enumerate}
 
