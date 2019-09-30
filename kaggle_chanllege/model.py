@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class Swish(nn.Module):
-    def __init__(self):
+    def __init__(self, inplace=False):
         super(Swish, self).__init__()
     
     def forward(self, x):
@@ -36,20 +36,20 @@ class simplenet(nn.Module):
             #Conv 1
             nn.Conv2d(3, 64, 3, stride=1, padding=1),
             nn.BatchNorm2d(64, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True),
+            Swish(inplace=True),
 
             #Conv 2 x3
             nn.Conv2d(64, 128, 3, stride=1, padding=1),
             nn.BatchNorm2d(128, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True),
+            Swish(inplace=True),
 
             nn.Conv2d(128, 128, 3, stride=1, padding=1),
             nn.BatchNorm2d(128, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True),
+            Swish(inplace=True),
 
             nn.Conv2d(128, 128, 3, stride=1, padding=1),
             nn.BatchNorm2d(128, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True),
+            Swish(inplace=True),
 
             #Pool 1
             nn.MaxPool2d(kernel_size=(2,2), stride=2),
@@ -58,16 +58,16 @@ class simplenet(nn.Module):
             #Conv 5 x2
             nn.Conv2d(128, 128, 3, stride=1, padding=1),
             nn.BatchNorm2d(128, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True),
+            Swish(inplace=True),
 
             nn.Conv2d(128, 128, 3, stride=1, padding=1),
             nn.BatchNorm2d(128, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True),
+            Swish(inplace=True),
 
             #A little modify of Conv 7
             nn.Conv2d(128, 256, 3, stride=1, padding=1),
             nn.BatchNorm2d(256, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True),
+            Swish(inplace=True),
 
             #Pool 2
             nn.MaxPool2d(kernel_size=(2,2), stride=2),
@@ -76,11 +76,11 @@ class simplenet(nn.Module):
             #Conv 8 x2
             nn.Conv2d(256, 256, 3, stride=1, padding=1),
             nn.BatchNorm2d(256, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True),
+            Swish(inplace=True),
 
             nn.Conv2d(256, 256, 3, stride=1, padding=1),
             nn.BatchNorm2d(256, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True),
+            Swish(inplace=True),
 
             #Pool 3
             nn.MaxPool2d(kernel_size=(2,2), stride=2),
@@ -89,15 +89,15 @@ class simplenet(nn.Module):
             #Expand
             nn.Conv2d(256, 512, 3, stride=1, padding=1),
             nn.BatchNorm2d(512, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True),
+            Swish(inplace=True),
 
             nn.Conv2d(512, 2048, 3, stride=1, padding=1),
             nn.BatchNorm2d(2048, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True),
+            Swish(inplace=True),
 
             nn.Conv2d(2048, 256, 3, stride=1, padding=1),
             nn.BatchNorm2d(256, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True),
+            Swish(inplace=True),
 
             #Pool 4
             nn.MaxPool2d(kernel_size=(2,2), stride=2),
@@ -105,7 +105,7 @@ class simplenet(nn.Module):
 
             nn.Conv2d(256, 256, 3, stride=1, padding=1),
             nn.BatchNorm2d(256, eps=bn_epsilon, momentum=bn_mom,affine=True),
-            nn.ReLU(inplace=True)
+            Swish(inplace=True)
         )
 
         #Initialization
