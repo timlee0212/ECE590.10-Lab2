@@ -2,6 +2,14 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+class Swish(nn.Module):
+    def __init__(self):
+        super(Swish, self).__init__()
+    
+    def forward(self, x):
+        return x * F.sigmoid(x)
+
+
 class simplenet(nn.Module):
     def __init__(self, num_classes = 10):
         super(simplenet, self).__init__()
