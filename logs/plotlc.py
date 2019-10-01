@@ -2,7 +2,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 
-data = pd.read_csv("training_kaggle.csv")
+data = pd.read_csv("training_finetune.csv")
 
 sns.set_palette(sns.color_palette("GnBu_d"))
 fig = plt.figure()
