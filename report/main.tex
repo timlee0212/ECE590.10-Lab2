@@ -107,13 +107,13 @@ Assignment 4
 \begin{enumerate}
     \item In this section, I keep the Batch Normalization part in network and try to tune learning rate and the regularizer separately.
     
-    First, I select $0.01, 0.05, 0.1$ as the learning rate, the learning curve of different learning rate is shown in Fig.
-    
-    \begin{figure}
+    First, I select $0.01, 0.05, 0.1$ as the learning rate, the learning curve of different learning rate is shown in Fig.\ref{fig:var_lr}.
+    \begin{figure}[h]
         \centering
-        \includegraphics[width=0.45\linewidth}{}
-        \caption{Caption}
-        \label{fig:my_label}
+        \includegraphics[width=0.45\linewidth]{LR_BN_var_loss.eps}
+        \includegraphics[width=0.45\linewidth]{LR_BN_var_acc.eps}
+        \caption{The accuracy and loss curve of different settings of learning rate.}
+        \label{fig:var_lr}
     \end{figure}
     
     From the result above, I found with the learning rate set to 0.05, the network gave the best result. So in the experiment below, I settle the learning rate to 0.05 and tried different regularizer. The result is shown in Fig.\ref{fig:var_reg}. We can see that the smaller the regularizer is, the smoother the learning curve is.  It seems that $5e-5$ is a relatively proper value.
@@ -121,12 +121,48 @@ Assignment 4
         \centering
         \includegraphics[width=0.45\linewidth]{REG_BN_var_loss.eps}
         \includegraphics[width=0.45\linewidth]{REG_BN_var.eps}
-        \caption{The accuracy and loss curve of different settings of regularizer.}
+        \caption{The accuracy and loss curve of different settings of regularizer, with learning rate set to 0.05}
         \label{fig:var_reg}
+    \end{figure}
+    
+    \item  
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.45\linewidth]{BN01DECAY_Loss.eps}
+        \includegraphics[width=0.45\linewidth]{BN01DECAY_Acc.eps}
+        \caption{ The accuracy and loss curve of learning rate decay policy applied compared to no decay settings.}
+        \label{fig:lr_decay}
+    \end{figure}
+    
+    \item The final setting is learning rate 0.05, regularizer 1e-5, decay 0.98 every 2 epochs, and the accuracy reaches to 71\%. The learning curve is shown in Fig.\ref{fig:finetune}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.6\linewidth]{learn_curve_fintune.eps}
+        \caption{Learning Curve of fine tuned network settings.}
+        \label{fig:finetune}
     \end{figure}
 \end{enumerate}
 
+
+\item
+Assignment 5
+
+For the final challenge, I choose SimpleNet\cite{DBLP:journals/corr/HasanPourRVS16} as the model structure. It is simple with only 3x3 conv, ReLU and max pooling layers. The only noticeable difference is that the SimpleNet adopt a 0.1 dropout, which makes it faster to train tough it has large size. It can reach 95\% for 300 epochs and in my experiment it reached 94.7\% for 200 epochs, which only took around 1.7 hours.
+
+The parameters: learning rate 0.1 for first 100 epochs then 0.01; Adadelta optimizer with $\rho=0.9, \epsilon=1e-3$ and regularizer $0.001$; Using standard data augmentation. The learning curve of SimpleNet is shown in Fig.\ref{fig:simplenet}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\linewidth]{learn_curve_kaggle.eps}
+    \caption{The Leaning curve of the final kaggle challenge.}
+    \label{fig:simplenet}
+\end{figure}
 \end{enumerate}
+
+\bibliographystyle{plain}
+\bibliography{ref}
+
 
 \end{document}
 \grid
